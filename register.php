@@ -21,6 +21,7 @@
         <button type="submit">Register</button>
     </form>
     <?php
+
     $SERVERNAME="localhost";
     $USERNAME = "BLESS";
     $PASSWORD= " ";
@@ -54,5 +55,6 @@
     }
     }
     mysqli_close($conn);
+    ?>
 </body>
 </html>
