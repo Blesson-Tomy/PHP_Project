@@ -1,0 +1,180 @@
+:root{
+    --bg: #f6f9fc;
+    --card: #ffffff;
+    --blue-50: #e6f0ff;
+    --blue-400: #2b6cb0;
+    --blue-600: #1e4a86;
+    --blue-700: #153a66;
+    --muted: #6b7280;
+    --success: #1e7e34;
+    --danger: #d0342c;
+    --max-card-width: 720px;
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+
+/* Page: full viewport, center content, no outer scroll */
+html, body {
+    height: 100%;
+    margin: 0;
+    background: linear-gradient(180deg, var(--bg), #eef6ff);
+}
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* prevent page scrollbars */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: var(--font-family);
+}
+
+/* Wrap helps keep layout responsive and centered */
+.wrap {
+    width: 100%;
+    max-width: 820px;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* ensures centering even on tall screens */
+}
+
+/* Card: visual container. internal scroll only if content exceeds viewport */
+.card {
+    width: 100%;
+    max-width: var(--max-card-width);
+    background: var(--card);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(16,24,40,0.08);
+    padding: 28px;
+    box-sizing: border-box;
+    max-height: calc(100vh - 48px); /* leave breathing room */
+    overflow: auto; /* internal scroll only */
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Brand */
+.brand {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.logo {
+    width: 56px;
+    height: 56px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--blue-600), var(--blue-400));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+/* Headings */
+h1 { margin: 0; font-size: 20px; }
+.lead { margin: 2px 0 0; color: var(--muted); font-size: 13px; }
+
+/* Alerts */
+.alert {
+    padding: 12px 14px;
+    border-radius: 8px;
+    margin: 12px 0;
+    font-size: 14px;
+}
+.alert.error { background: #fff1f0; color: var(--danger); border: 1px solid rgba(208,52,44,0.08); }
+.alert.success { background: #ecfdf5; color: var(--success); border: 1px solid rgba(30,126,52,0.08); }
+
+/* Inline label + input layout */
+form > .row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+form > .row label {
+    display: block;
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 0;
+    flex: 0 0 140px;
+    text-align: right;
+    font-weight: 600;
+}
+.row .input {
+    width: 100%;
+    flex: 1;
+    padding: 11px 12px;
+    border-radius: 8px;
+    border: 1px solid #e6edf5;
+    background: #fbfdff;
+    font-size: 14px;
+    outline: none;
+    box-sizing: border-box;
+}
+.row .input:focus {
+    border-color: var(--blue-400);
+    box-shadow: 0 4px 18px rgba(43,108,176,0.12);
+}
+
+/* Actions (button centered) */
+.actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 18px;
+    gap: 12px;
+}
+.btn {
+    background: linear-gradient(180deg, var(--blue-400), var(--blue-600));
+    color: white;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 0;
+    font-weight: 600;
+    cursor: pointer;
+    min-width: 160px;
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(11,97,214,0.12);
+}
+.btn.secondary { background: transparent; border: 1px solid #e6eefb; color: var(--blue-700); }
+
+/* Terms and meta */
+.terms {
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--muted);
+    text-align: center;
+    line-height: 1.4;
+}
+.meta {
+    margin-top: 14px;
+    color: var(--muted);
+    font-size: 13px;
+    text-align: center;
+}
+a.link { color: var(--blue-700); text-decoration: none; font-weight: 600; }
+
+/* Responsive: stack label/input on smaller screens and ensure no outer scrolling */
+@media (max-width: 640px) {
+    .card { padding: 20px; max-width: 100%; }
+    form > .row { flex-direction: column; align-items: stretch; }
+    form > .row label {
+        flex: 0 0 auto;
+        text-align: left;
+        margin-bottom: 6px;
+        width: auto;
+    }
+    .wrap { padding: 12px; }
+}
+
+/* Small screens: ensure card fits and outer page still doesn't scroll */
+@media (max-height: 520px) {
+    .card {
+        padding: 18px;
+        max-height: calc(100vh - 20px);
+    }
+}
