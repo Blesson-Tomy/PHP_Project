@@ -27,9 +27,7 @@ mysqli_stmt_bind_result($stmt_role, $role);
 mysqli_stmt_fetch($stmt_role);
 mysqli_stmt_close($stmt_role);
 
-// ============================
-// 1️⃣ Handle New Post Submission (Alumni only)
-// ============================
+// Handle New Post Submission (Alumni only)
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_post"]) && $role === 'Alumni') {
     $title = trim($_POST["title"]);
     $content = trim($_POST["content"]);
@@ -49,9 +47,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_post"]) && $role =
     }
 }
 
-// ============================
-// 2️⃣ Handle Delete Post (Alumni only)
-// ============================
+
+//Handle Delete Post (Alumni only)
 if (isset($_GET['delete_id']) && $role === 'Alumni') {
     $post_id = $_GET['delete_id'];
 
@@ -69,9 +66,7 @@ if (isset($_GET['delete_id']) && $role === 'Alumni') {
     mysqli_stmt_close($stmt);
 }
 
-// ============================
-// 3️⃣ Fetch All Posts
-// ============================
+//Fetch All Posts
 $sql = "SELECT id, username, title, content, created_at FROM posts ORDER BY created_at DESC";
 $result = mysqli_query($conn, $sql);
 ?>
